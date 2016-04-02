@@ -16,7 +16,7 @@ class BaseCrypt(object):
     """ BaseCrypt module class
     """
 
-    primes = [
+    PRIMES = [
         1,
         41,
         2377,
@@ -60,7 +60,8 @@ class BaseCrypt(object):
 
         length = 7 if length > 7 else (1 if length == 0 else abs(length))
         ceil = pow(62, length)
-        prime = BaseCrypt.primes[length]
+
+        prime = BaseCrypt.PRIMES[length]
         ret = BaseCrypt.base_62(
             (num * prime) - floor(num * prime / ceil) * ceil)
         return ret.ljust(length, "0")

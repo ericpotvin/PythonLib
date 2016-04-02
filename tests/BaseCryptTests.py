@@ -13,38 +13,38 @@ class BaseCryptTests(unittest.TestCase):
     Tests for `BaseCrypt.py`.
     """
 
-    def test_1(self):
+    def test_base_62(self):
         """
-        Is cJio3 the base crypt of 1?
+        Test the base 62 of: 42, 141, 416, 7347
+        """
+        self.assertTrue(BaseCrypt.base_62(42) == 'g')
+        self.assertFalse(BaseCrypt.base_62(42) == 'bad')
+
+        self.assertTrue(BaseCrypt.base_62(141) == '2H')
+        self.assertFalse(BaseCrypt.base_62(141) == 'bad')
+
+        self.assertTrue(BaseCrypt.base_62(416) == '6i')
+        self.assertFalse(BaseCrypt.base_62(416) == 'bad')
+
+        self.assertTrue(BaseCrypt.base_62(7347) == '1uV')
+        self.assertFalse(BaseCrypt.base_62(7347) == 'bad')
+
+    def test_get_hash(self):
+        """
+        Test the values of 1, 41, 733, 82821, 467343
         """
         self.assertTrue(BaseCrypt.get_hash(1) == 'cJio3')
         self.assertFalse(BaseCrypt.get_hash(1) == 'bad')
 
-    def test_41(self):
-        """
-        Is L2d5z the base crypt of 41?
-        """
         self.assertTrue(BaseCrypt.get_hash(41) == 'L2d5z')
         self.assertFalse(BaseCrypt.get_hash(41) == 'bad')
 
-    def test_733(self):
-        """
-        Is 1AjhT the base crypt of 733?
-        """
         self.assertTrue(BaseCrypt.get_hash(733) == '1AjhT')
         self.assertFalse(BaseCrypt.get_hash(733) == 'bad')
 
-    def test_82821(self):
-        """
-        Is C1VlT the base crypt of 82821?
-        """
         self.assertTrue(BaseCrypt.get_hash(82821) == 'C1VlT')
         self.assertFalse(BaseCrypt.get_hash(82821) == 'bad')
 
-    def test_467343(self):
-        """
-        Is rYWFN the base crypt of 467343?
-        """
         self.assertTrue(BaseCrypt.get_hash(467343) == 'rYWFN')
         self.assertFalse(BaseCrypt.get_hash(467343) == 'bad')
 
