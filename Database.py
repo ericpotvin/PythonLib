@@ -11,7 +11,8 @@ Database Class [ Database.py ]
 
 SQL_DELIMITER = ", "
 END_SQL = ";"
-CACHE_SQL_FILE = "cache.sql"
+FILE_SQL_EXT = ".sql"
+FILE_SQL_NAME = "insert"
 CACHE_SQL_PATH = "./"
 
 # todo add sqlite3, mysql or other

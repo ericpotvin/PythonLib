@@ -9,7 +9,7 @@ Files Class [ Files.py ]
 @link        https://github.com/ericpotvin/PythonLib
 """
 import codecs
-from os import path, remove, walk
+from os import path, remove, walk, makedirs
 
 # File extensions
 FILE_EXT_HTML = ".html"
@@ -81,17 +81,20 @@ class Files(object):
             filename.write(data)
 
     @staticmethod
-    def file_exists(filename, show_error=False):
+    def file_exists(filename):
         """ Check if the file exists
             :param filename: The filename
-            :param show_error: Show the error if the file does not exists
         """
-        if not path.exists(filename):
-            if show_error:
-                print "  ** ERROR: Unable to find the file %s" % filename
-            return False
+        return path.exists(filename)
 
-        return True
+    @staticmethod
+    def create_folder(folder):
+        """ Creates a folder
+            :param folder: The folder name
+        """
+        if Files.file_exists(folder):
+            return
+        makedirs(folder)
 
     @staticmethod
     def delete_files(filename):
@@ -106,7 +109,7 @@ class Files(object):
         """ Delete a folder and its files
             :param folder: The folder
         """
-        if not path.isfile(folder):
+        if not path.exists(folder):
             return False
 
         files = Files.get_file_list(folder)

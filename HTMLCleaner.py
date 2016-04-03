@@ -109,7 +109,7 @@ class HTMLCleaner(object):
         replace["<h4(.*?)>(.*?)</h4>"] = ""
         replace["<h5(.*?)>(.*?)</h5>"] = ""
         replace["<h6(.*?)>(.*?)</h6>"] = ""
-        replace["<i(.*?)>"] = ""
+        replace["<i (.*?)>"] = ""
         replace["</i>"] = ""
         replace["<u(.*?)>"] = ""
         replace["</u>"] = ""
