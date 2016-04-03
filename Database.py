@@ -20,6 +20,7 @@ class Database(object):
     FILE_SQL_EXT = ".sql"
     FILE_SQL_NAME = "insert"
 
+    SQL_FIELD_SEPARATOR = "_"
     SQL_DELIMITER = ", "
     SQL_PRIMARY_KEY = "id"
     SQL_FOREIGN_KEY_PREFIX = "fk_"
