@@ -56,8 +56,8 @@ class Database(object):
 
         try:
             self.database.execute(sql)
-        except Exception as e:
-            print e
+        except Exception as exception:
+            print exception
 
     def insert(self, table, data, fk_id=None):
         """ Add a record
@@ -86,23 +86,33 @@ class Database(object):
             self._execute_insert(sql, tuple(values))
 
     def _execute_insert(self, sql, values):
-
+        """ Execute the insert command
+            :param sql: The sql query
+            :param values: The value associated with the query
+            :return int
+        """
         cursor = self.database.cursor()
 
         try:
             cursor.execute(sql, values)
             self.database.commit()
-        except Exception as e:
-            print e
+        except Exception as exception:
+            print exception
 
         return cursor.lastrowid
 
     def close(self):
+        """ Close the database
+        """
         self.database.close()
 
     @staticmethod
     def _build_params(data, next_id):
-
+        """ Build the SQL parameters
+            :param data: The data
+            :param next_id: The next primary key or id
+            :return: 3 lists
+        """
         columns = []
         mapped = []
         values = []
@@ -124,7 +134,10 @@ class Database(object):
         return columns, mapped, values
 
     def _get_next_id(self, table):
-
+        """ Get the next primary key ID
+            :param table: The table name
+            :return int
+        """
         _id = 1
         cursor = self.database.cursor()
 
@@ -133,8 +146,8 @@ class Database(object):
 
         try:
             cursor.execute(query)
-        except Exception as e:
-            print e
+        except Exception as exception:
+            print exception
 
         if not cursor:
             return _id

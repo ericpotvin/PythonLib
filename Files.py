@@ -86,6 +86,9 @@ class Files(object):
     @staticmethod
     def write_binary(data, filename, folder="./"):
         """ Write the data to a file in binary mode
+            :param data: The data to save
+            :param filename: The file name
+            :param folder: The folder where to save the file
         """
         data = data.encode('UTF8')
         with open(folder + filename, 'wb') as file_data:
@@ -93,15 +96,22 @@ class Files(object):
 
     @staticmethod
     def read_binary_file(file_name, position, length):
-        with open(file_name, "rb") as f:
-            f.seek(position * 2)
-            content = f.read(length * 2)
+        """ Read x characters from a binary file starting at a position
+            :param file_name: The filename
+            :param position: The starting position
+            :param length: The length
+            :return string
+        """
+        with open(file_name, "rb") as my_file:
+            my_file.seek(position * 2)
+            content = my_file.read(length * 2)
             return binascii.unhexlify(content)
 
     @staticmethod
     def file_exists(filename):
         """ Check if the file exists
             :param filename: The filename
+            :return boolean
         """
         return path.exists(filename)
 
