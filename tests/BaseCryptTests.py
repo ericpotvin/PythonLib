@@ -1,11 +1,10 @@
 """ This script tests the basic crypt for an number.
 """
-
 import unittest
 import sys
-sys.path.insert(0, '..')
-
 from BaseCrypt import BaseCrypt
+
+sys.path.insert(0, '..')
 
 
 class BaseCryptTests(unittest.TestCase):

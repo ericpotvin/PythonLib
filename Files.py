@@ -9,11 +9,14 @@ Files Class [ Files.py ]
 @link        https://github.com/ericpotvin/PythonLib
 """
 import codecs
+import binascii
 from os import path, remove, walk, makedirs
 
 # File extensions
 FILE_EXT_HTML = ".html"
 FILE_EXT_JSON = ".json"
+
+ERROR_FILE_NOT_FOUND = "The file %s cannot be found"
 
 
 class Files(object):
@@ -79,6 +82,21 @@ class Files(object):
         """
         with open(folder + file_name, 'w') as filename:
             filename.write(data)
+
+    @staticmethod
+    def write_binary(data, filename, folder="./"):
+        """ Write the data to a file in binary mode
+        """
+        data = data.encode('UTF8')
+        with open(folder + filename, 'wb') as file_data:
+            file_data.write(binascii.hexlify(data))
+
+    @staticmethod
+    def read_binary_file(file_name, position, length):
+        with open(file_name, "rb") as f:
+            f.seek(position * 2)
+            content = f.read(length * 2)
+            return binascii.unhexlify(content)
 
     @staticmethod
     def file_exists(filename):

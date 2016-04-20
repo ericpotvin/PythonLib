@@ -3,8 +3,9 @@
 
 import unittest
 import sys
-sys.path.insert(0, '..')
 from HTMLCleaner import HTMLCleaner
+
+sys.path.insert(0, '..')
 
 # TODO: Need more TESTS
 

@@ -4,5 +4,5 @@ clear ;
 
 for x in $(ls *.py)
 do
-	python $x
+	python "$x"
 done

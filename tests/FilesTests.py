@@ -3,9 +3,9 @@
 
 import unittest
 import sys
-sys.path.insert(0, '..')
-
 from Files import Files
+
+sys.path.insert(0, '..')
 
 # Set the default tests path
 TEST_PATH = "/tmp/test/"
@@ -65,6 +65,22 @@ class BaseCryptTests(unittest.TestCase):
         file_list = Files.get_file_list(TEST_PATH, ["file1.txt"])
         self.assertTrue(len(file_list) == 0)
         Files.delete_files(TEST_PATH + "file1.txt")
+
+    def test_write_binary(self):
+        """ Test can_include_file()
+        """
+        Files.write_binary("test", "binary.bin", TEST_PATH)
+        self.assertTrue(Files.file_exists(TEST_PATH + "binary.bin"))
+        content = Files.get_raw_contents(TEST_PATH + "binary.bin")
+        self.assertTrue(content == "74657374")
+        Files.delete_files(TEST_PATH + "binary.bin")
+
+    def test_read_binary(self):
+        """ Test can_include_file()
+        """
+        Files.write_binary("test", "binary.bin", TEST_PATH)
+        content = Files.read_binary_file(TEST_PATH + "binary.bin", 0, 8)
+        self.assertTrue(content == "test")
 
 
 if __name__ == '__main__':

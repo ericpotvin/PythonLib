@@ -11,3 +11,11 @@ def signal_handler(sig, frame):
 
 signal.signal(signal.SIGINT, signal_handler)
 
+
+def zerofill(number, size=8):
+    """ return the number with zeros filled
+        :param number: The number
+        :param size: The size
+        :return string
+    """
+    return str(number).zfill(size)
